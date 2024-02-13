@@ -7,7 +7,14 @@
 
     @section("sadrzajStranice")
 
-        <p>Trenutno vreme je: {{ date("H:i:s") }}</p>
+
+    @if ($sat >= 12)
+        "dobar dan"
+    @else
+        "dobro jutro"
+    @endif
+
+        <p>Trenutno vreme je: {{ $trenutnoVreme }} i cas je {{ $sat }}</p>
 
     @endsection
 
