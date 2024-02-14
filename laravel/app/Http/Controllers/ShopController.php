@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductModel;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    public function index()
-    {
 
-        $products = [
-            "BMW F30", "BMW G20", "Mercedes GLE", "Audi A6", "Volvo XC90"
-        ];
+    public function getAllProducts()  {
+
+        $allProducts = ProductModel::all();
 
 
-        return view("shop", compact('products'));
+        return view("shop", compact('allProducts'));
     }
+
+
 }

@@ -7,12 +7,18 @@
     @section("sadrzajStranice")
 
         <p>
-            @foreach ($products as $singleProduct)
-                @if ($singleProduct == 'BMW G20' || $singleProduct == 'BMW F30')
+            @foreach ($allProducts as $singleProduct)
+                {{-- @if ($singleProduct == 'BMW G20' || $singleProduct == 'BMW F30')
                     <p>{{ $singleProduct }} -AKCIJA</p>
                 @else
                     <p>{{ $singleProduct }} </p>
-                @endif
+                @endif --}}
+
+
+                Naziv: {{ $singleProduct->name}}<br>
+                Kolicina: {{ $singleProduct->amount}}<br>
+                Cena: {{ $singleProduct->price}}<br>
+                <br>
 
 
 

@@ -17,6 +17,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/contact">Contact</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/allContacts">Admin - All Contacts</a>
+          </li>
 
       </div>
     </div>

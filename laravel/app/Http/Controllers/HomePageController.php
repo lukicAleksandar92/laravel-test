@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductModel;
 use Illuminate\Http\Request;
 
 
@@ -14,7 +15,9 @@ class HomePageController extends Controller
 
         $trenutnoVreme = date('H:i:s');
 
-        return view("welcome", compact('trenutnoVreme', 'sat'));
+        $newestSixProducts = ProductModel::orderBy('id', 'desc')->take(6)->get();
+
+        return view("welcome", compact('trenutnoVreme', 'sat', 'newestSixProducts'));
 
     }
 

@@ -1,24 +1,28 @@
-
 @extends('layout')
 
-    @section("naslovStranice")
-        Home
-    @endsection
+@section('naslovStranice')
+    Home
+@endsection
 
-    @section("sadrzajStranice")
-
-
+@section('sadrzajStranice')
     @if ($sat >= 12)
         "dobar dan"
     @else
         "dobro jutro"
     @endif
 
-        <p>Trenutno vreme je: {{ $trenutnoVreme }} i cas je {{ $sat }}</p>
+    <p>Trenutno vreme je: {{ $trenutnoVreme }} i cas je {{ $sat }}</p>
 
-    @endsection
+    <hr>
 
-
-
-
-
+    <h4>Newest products</h4>
+    <p>
+        @foreach ($newestSixProducts as $singleProduct)
+            {{ $singleProduct->id }}<br>
+            Naziv: {{ $singleProduct->name }}<br>
+            Kolicina: {{ $singleProduct->amount }}<br>
+            Cena: {{ $singleProduct->price }}<br>
+            <br>
+        @endforeach
+    </p>
+@endsection
