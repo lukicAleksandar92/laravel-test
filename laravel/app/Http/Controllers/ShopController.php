@@ -10,7 +10,7 @@ class ShopController extends Controller
 
     public function getAllProducts()  {
 
-        $allProducts = ProductModel::all();
+        $allProducts = ProductModel::orderBy('id', 'desc')->get();
 
 
         return view("shop", compact('allProducts'));

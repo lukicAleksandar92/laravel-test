@@ -8,8 +8,15 @@
 @section('sadrzajStranice')
     <div class="row justify-content-center">
         <div class="col-md-5 col-12 p-4">
+            <h3>Contact</h3>
+            <hr>
             <h4>Write us</h4>
-            <form class="row" method="POST" action="">
+            <form class="row" method="POST" action="/send-contact">
+                @if ($errors->any())
+                    <p>Greska: {{ $errors->first() }}</p>
+                @endif
+
+                {{ csrf_field() }}
                 <div style="padding: 0;" class="row mt-2 col-12">
                     <div class="col col-md-12 col-12 mt-2 mt-md-0">
                         <input value="" name="email" required type="email" class="form-control"
@@ -18,7 +25,7 @@
                 </div>
                 <div style="padding: 0;" class="row mt-2 col-12">
                     <div class="col col-md-12 col-12 mt-2 mt-md-0">
-                        <input value="" name="title" type="text" class="form-control" placeholder="Subject">
+                        <input value="" name="subject" required type="text" class="form-control" placeholder="Subject">
                     </div>
                 </div>
                 <div style="padding: 0;" class="mb-3 mt-2">

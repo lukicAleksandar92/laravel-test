@@ -5,6 +5,7 @@
 @endsection
 
 @section('sadrzajStranice')
+<div class="container">
     @if ($sat >= 12)
         "dobar dan"
     @else
@@ -25,4 +26,10 @@
             <br>
         @endforeach
     </p>
+
+
+</div>
+
+
+
 @endsection

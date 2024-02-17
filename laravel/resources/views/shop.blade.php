@@ -5,6 +5,9 @@
     @endsection
 
     @section("sadrzajStranice")
+    <div class="container">
+    <h3>Shop</h3>
+    <hr>
 
         <p>
             @foreach ($allProducts as $singleProduct)
@@ -24,5 +27,5 @@
 
             @endforeach
         </p>
-
+    </div>
     @endsection

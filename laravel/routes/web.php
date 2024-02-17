@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminContactController;
+use App\Http\Controllers\Admin\AdminProductsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\ShopController;
@@ -12,9 +14,23 @@ Route::view("/about","about");
 
 Route::get("/contact", [ContactController::class, 'index']);
 
+
 Route::get("/shop", [ShopController::class, 'getAllProducts']);
 
 
-Route::get("/admin/allContacts", [ContactController::class, 'getAllContacts']);
+// ADMIN start
 
+Route::get("/admin/allContacts", [AdminContactController::class, 'getAllContacts']);
+
+Route::post('/send-contact', [AdminContactController::class, 'sendContact']);
+
+
+
+Route::get("/admin/add-product", [AdminProductsController::class, 'addProduct']);
+
+Route::post("/create-new-product", [AdminProductsController::class, 'createNewProduct']);
+
+Route::get("/admin/all-products", [AdminProductsController::class, 'allProducts']);
+
+// ADMIN end
 
