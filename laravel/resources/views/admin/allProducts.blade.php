@@ -16,6 +16,7 @@
         <th scope="col">Amount</th>
         <th scope="col">Price</th>
         <th scope="col">Description</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -26,6 +27,11 @@
             <td>{{ $product->amount }}</td>
             <td>{{ $product->price }}</td>
             <td>{{ $product->description }}</td>
+            <td>
+                <a href="/admin/delete-product/{{$product->id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Obrisi</a>
+
+                <a class="btn btn-primary">Edituj</a>
+            </td>
         </tr>
         @endforeach
     </tbody>

@@ -44,5 +44,20 @@ class AdminContactController extends Controller
 
     }
 
+    public function delete($contact) {
+
+        $singleContact = ContactModel::where(['id' => $contact])->first();
+
+        if($singleContact === null) {
+            die("Ovaj proizvod ne postoji");
+        }
+
+        $singleContact->delete();
+
+        return redirect()->back();
+
+
+    }
+
 
 }

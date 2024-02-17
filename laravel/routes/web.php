@@ -25,12 +25,19 @@ Route::get("/admin/allContacts", [AdminContactController::class, 'getAllContacts
 Route::post('/send-contact', [AdminContactController::class, 'sendContact']);
 
 
-
 Route::get("/admin/add-product", [AdminProductsController::class, 'addProduct']);
 
 Route::post("/create-new-product", [AdminProductsController::class, 'createNewProduct']);
 
 Route::get("/admin/all-products", [AdminProductsController::class, 'allProducts']);
 
+
+Route::get("/admin/delete-product/{product}", [AdminProductsController::class, 'delete']);
+
+Route::get("/admin/delete-contact/{contact}", [AdminContactController::class, 'delete']);
+
+
 // ADMIN end
+
+
 
