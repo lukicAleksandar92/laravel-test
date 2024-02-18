@@ -11,6 +11,6 @@ class ProductModel extends Model
     protected $table = "products";
 
     protected $fillable = [
-        "name", "description", "amount", "price" // Polja koja se mogu modif.i koristiti
+        "name", "description", "amount", "price", "image" // Polja koja se mogu modif.i koristiti
     ];
 }

@@ -9,7 +9,7 @@
 
 <div class="container">
     <h4>All contacts (from newest to oldest)</h4>
-    <table class="table">
+    <table class="table text-center">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -29,9 +29,9 @@
                 <td>{{ $contact->subject }}</td>
                 <td>{{ $contact->message }}</td>
                 <td>
-                    <a href="/admin/delete-contact/{{$contact->id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Obrisi</a>
+                    <a href="{{route("brisanjeKontakta", ["contact"=>$contact->id])}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Obrisi</a>
 
-                    <a class="btn btn-primary">Edituj</a>
+                    <a href="{{ route('editContact', ['contact' => $contact->id]) }}" class="btn btn-primary centered">Edituj</a>
                 </td>
             </tr>
             @endforeach

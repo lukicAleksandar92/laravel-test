@@ -8,9 +8,6 @@ use Illuminate\Http\Request;
 
 class AdminContactController extends Controller
 {
-
-
-
     public function getAllContacts()  {
 
         $allContacts = ContactModel::orderBy('id', 'desc')->get();
@@ -18,7 +15,6 @@ class AdminContactController extends Controller
 
         return view("admin/allContacts", compact('allContacts'));
     }
-
 
     public function sendContact(Request $request) {
 
@@ -44,12 +40,12 @@ class AdminContactController extends Controller
 
     }
 
-    public function delete($contact) {
+    public function deleteContact($contact) {
 
         $singleContact = ContactModel::where(['id' => $contact])->first();
 
         if($singleContact === null) {
-            die("Ovaj proizvod ne postoji");
+            die("Ovaj kontakt ne postoji");
         }
 
         $singleContact->delete();
@@ -58,6 +54,33 @@ class AdminContactController extends Controller
 
 
     }
+
+    public function editContact($contact) {
+        $singleContact = ContactModel::findOrFail($contact);
+
+        return view('admin.editContact', compact('singleContact'));
+    }
+
+    public function updateContact(Request $request, $contact) {
+
+        $singleContact = ContactModel::findOrFail($contact);
+
+        $request->validate([
+            "email" => "required|string" ,
+            "subject" => "required|string",
+            "message" => "required|string|min:5"
+        ]);
+
+        $singleContact->email = $request->get('email');
+        $singleContact->subject = $request->get('subject');
+        $singleContact->message = $request->get('message');
+
+        $singleContact->save();
+
+        return redirect()->route("sviKontakti");
+    }
+
+
 
 
 }

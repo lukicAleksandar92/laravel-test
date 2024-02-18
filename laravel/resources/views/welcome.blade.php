@@ -6,6 +6,7 @@
 
 @section('sadrzajStranice')
 <div class="container">
+    <h4>HOME</h4>
     @if ($sat >= 12)
         "dobar dan"
     @else

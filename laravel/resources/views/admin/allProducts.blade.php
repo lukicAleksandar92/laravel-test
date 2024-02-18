@@ -8,7 +8,8 @@
 
 <div class="container">
     <h4>All products (from newest to oldest)</h4>
-<table class="table">
+    <a class="btn btn-outline-success centered" href="/admin/add-product">Add product</a>
+<table class="table text-center">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -16,6 +17,7 @@
         <th scope="col">Amount</th>
         <th scope="col">Price</th>
         <th scope="col">Description</th>
+        <th scope="col">Image</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -27,17 +29,16 @@
             <td>{{ $product->amount }}</td>
             <td>{{ $product->price }}</td>
             <td>{{ $product->description }}</td>
+            <td>{{ $product->image }}</td>
             <td>
-                <a href="/admin/delete-product/{{$product->id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Obrisi</a>
+                <a href="{{route("brisanjeProizvoda", ['product' => $product->id])}}" class="btn btn-danger centered" onclick="return confirm('Are you sure you want to delete this item?');">Obrisi</a>
 
-                <a class="btn btn-primary">Edituj</a>
+                <a href="{{ route('editProduct', ['product' => $product->id]) }}" class="btn btn-primary centered">Edituj</a>
+
             </td>
         </tr>
         @endforeach
     </tbody>
   </table>
 </div>
-
-
-
 @endsection
