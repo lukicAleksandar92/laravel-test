@@ -6,7 +6,9 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\AdminCheckMidlleware;
+use App\Http\Middleware\TestMiddleware;
 
 Route::get("/", [HomePageController::class, 'index']);
 
@@ -17,34 +19,76 @@ Route::view("/about","about");
 Route::get("/contact", [ContactController::class, 'index']);
 
 
-// ADMIN contact
+Route::middleware(['auth', AdminCheckMidlleware::class])->prefix('admin')->group(function () {
 
-Route::get("/admin/allContacts", [AdminContactController::class, 'getAllContacts'])
-->name("sviKontakti");
+        // ADMIN contact
 
-Route::post('/send-contact', [AdminContactController::class, 'sendContact']);
+    Route::get("/allContacts", [AdminContactController::class, 'getAllContacts'])
+    ->name("sviKontakti");
 
-Route::get("/admin/delete-contact/{contact}", [AdminContactController::class, 'deleteContact'])->name("brisanjeKontakta");
+    Route::post('/send-contact', [AdminContactController::class, 'sendContact'])
+    ;
 
-
-Route::get('admin/contacts/{contact}/edit', [AdminContactController::class, 'editContact'])->name('editContact');
-
-Route::put('admin/contacts/{contact}', [AdminContactController::class, 'updateContact'])->name('updateContact');
-
-
-// ADMIN product
-
-Route::get("/admin/all-products", [AdminProductsController::class, 'allProducts'])
-->name("sviProizvodi");
+    Route::get("/delete-contact/{contact}", [AdminContactController::class, 'deleteContact'])->name("brisanjeKontakta")
+    ;
 
 
-Route::view("admin/add-product","admin/addProduct");
+    Route::get('/contacts/{contact}/edit', [AdminContactController::class, 'editContact'])
 
-Route::post("/create-new-product", [AdminProductsController::class, 'createNewProduct'])->name("snimanjeOglasa");
+    ->name('editContact');
+
+    Route::put('/contacts/{contact}', [AdminContactController::class, 'updateContact'])
+    ->name('updateContact');
 
 
-Route::get('admin/products/{product}/edit', [AdminProductsController::class, 'editProduct'])->name('editProduct');
+    // ADMIN product
 
-Route::put('admin/products/{product}', [AdminProductsController::class, 'updateProduct'])->name('updateProduct');
+    Route::get("/all-products", [AdminProductsController::class, 'allProducts'])
+    ->name("sviProizvodi");
 
-Route::get("/admin/delete-product/{product}", [AdminProductsController::class, 'deleteProduct'])->name("brisanjeProizvoda");
+
+    Route::view("/add-product","admin/addProduct")
+    ;
+
+    Route::post("/create-new-product", [AdminProductsController::class, 'createNewProduct'])
+    ->name("snimanjeOglasa");
+
+
+    Route::get('/products/{product}/edit', [AdminProductsController::class, 'editProduct'])
+    ->name('editProduct');
+
+    Route::put('/products/{product}', [AdminProductsController::class, 'updateProduct'])
+    ->name('updateProduct');
+
+    Route::get("/delete-product/{product}", [AdminProductsController::class, 'deleteProduct'])
+    ->name("brisanjeProizvoda");
+
+
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes - Auth
+|--------------------------------------------------------------------------
+*/
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
+

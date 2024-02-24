@@ -56,32 +56,29 @@ class AdminProductsController extends Controller
     }
 
 
-    public function editProduct($product) {
-        $singleProduct = ProductModel::findOrFail($product);
-
-        return view('admin.editProduct', compact('singleProduct'));
+    public function editProduct(Request $request, ProductModel $product) {
+        return view('admin.editProduct', compact('product'));
     }
 
 
-    public function updateProduct(Request $request, $product) {
+    public function updateProduct(Request $request, ProductModel $product) {
 
-        $singleProduct = ProductModel::findOrFail($product);
+        // $singleProduct = ProductModel::findOrFail($product);
 
-        $request->validate([
-            "name" => "required|string",
-            "amount" => "required|integer|min:1",
-            "price" => "required|integer|min:1",
-            "description" => "required|string|min:5",
-            "image" => "required",
-        ]);
+        // $request->validate([
+        //     "name" => "required|string",
+        //     "amount" => "required|integer|min:1",
+        //     "price" => "required|integer|min:1",
+        //     "description" => "required|string|min:5",
+        //     "image" => "required",
+        // ]);
 
-        $singleProduct->name = $request->get('name');
-        $singleProduct->amount = $request->get('amount');
-        $singleProduct->price = $request->get('price');
-        $singleProduct->description = $request->get('description');
-        $singleProduct->image = $request->get('image');
-
-        $singleProduct->save();
+        $product->name = $request->get('name');
+        $product->amount = $request->get('amount');
+        $product->price = $request->get('price');
+        $product->description = $request->get('description');
+        $product->image = $request->get('image');
+        $product->save();
 
         return redirect()->route("sviProizvodi");
     }
