@@ -8,7 +8,7 @@ use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\AdminCheckMidlleware;
-use App\Http\Middleware\TestMiddleware;
+
 
 Route::get("/", [HomePageController::class, 'index']);
 
@@ -21,47 +21,35 @@ Route::get("/contact", [ContactController::class, 'index']);
 
 Route::middleware(['auth', AdminCheckMidlleware::class])->prefix('admin')->group(function () {
 
-        // ADMIN contact
+    // ADMIN contact
 
-    Route::get("/allContacts", [AdminContactController::class, 'getAllContacts'])
-    ->name("sviKontakti");
+    Route::controller(AdminContactController::class)->group(function () {
+        Route::get("/contacts/all", "getAllContacts")->name("sviKontakti");
+        Route::post("/contacts/send", "sendContact")->name("posaljiKontakt");
+        Route::get("/contacts/delete/{contact}",  'deleteContact')->name("brisanjeKontakta");
 
-    Route::post('/send-contact', [AdminContactController::class, 'sendContact'])
-    ;
-
-    Route::get("/delete-contact/{contact}", [AdminContactController::class, 'deleteContact'])->name("brisanjeKontakta")
-    ;
-
-
-    Route::get('/contacts/{contact}/edit', [AdminContactController::class, 'editContact'])
-
-    ->name('editContact');
-
-    Route::put('/contacts/{contact}', [AdminContactController::class, 'updateContact'])
-    ->name('updateContact');
+        Route::get("/contacts/{contact}/edit", 'editContact')->name('editContact');
+        Route::put("/contacts/{contact}", 'updateContact')->name('updateContact');
+    });
 
 
     // ADMIN product
 
-    Route::get("/all-products", [AdminProductsController::class, 'allProducts'])
-    ->name("sviProizvodi");
+    Route::controller(AdminProductsController::class)->group(function () {
+
+        Route::get("/all-products", 'allProducts')->name("sviProizvodi");
+        Route::post("/create-new-product", 'createNewProduct')->name("snimanjeOglasa");
+        Route::get('/products/{product}/edit', 'editProduct')->name('editProduct');
+        Route::put('/products/{product}', 'updateProduct')->name('updateProduct');
+
+        Route::get("/delete-product/{product}", 'deleteProduct')->name("brisanjeProizvoda");
+
+    });
+
+    Route::view("/add-product","admin/addProduct");
 
 
-    Route::view("/add-product","admin/addProduct")
-    ;
 
-    Route::post("/create-new-product", [AdminProductsController::class, 'createNewProduct'])
-    ->name("snimanjeOglasa");
-
-
-    Route::get('/products/{product}/edit', [AdminProductsController::class, 'editProduct'])
-    ->name('editProduct');
-
-    Route::put('/products/{product}', [AdminProductsController::class, 'updateProduct'])
-    ->name('updateProduct');
-
-    Route::get("/delete-product/{product}", [AdminProductsController::class, 'deleteProduct'])
-    ->name("brisanjeProizvoda");
 
 
 });

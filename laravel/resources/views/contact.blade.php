@@ -4,16 +4,26 @@
     Contact
 @endsection
 
-
 @section('sadrzajStranice')
+    @if(session('success'))
     <div class="row justify-content-center">
+        <div class="alert alert-success col-md-5 col-12 p-4">
+            {{ session('success') }}
+        </div>
+    @else
+
+        <div class="row justify-content-center">
         <div class="col-md-5 col-12 p-4">
             <h3>Contact</h3>
             <hr>
             <h4>Write us</h4>
-            <form class="row" method="POST" action="/send-contact">
+            <form class="row" method="POST" action="{{ route("posaljiKontakt")}}">
                 @if ($errors->any())
-                    <p>Greska: {{ $errors->first() }}</p>
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    </div>
                 @endif
 
                 {{ csrf_field() }}
@@ -42,5 +52,11 @@
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
         </div>
+    </div>
+    @endif
+
+    <div class="col-md-5 col-12 p-4">
+        <p>Go to <a href="/">Homepage</a> or <a href="/contact">send</a> another contact.</p>
+    </div>
     </div>
 @endsection

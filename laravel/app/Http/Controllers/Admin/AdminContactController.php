@@ -32,10 +32,9 @@ class AdminContactController extends Controller
 
     public function sendContact(SendContactRequest $request) {
 
-
         $this->contactRepo->sendNewContact($request);
 
-        return redirect("admin/allContacts");
+        return redirect("/contact")->with('success', 'Contact successfully sent. We will reply as soon as possible.');;
 
     }
 
