@@ -10,46 +10,42 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\AdminCheckMidlleware;
 
 
-Route::get("/", [HomePageController::class, 'index']);
+Route::get("/", [HomePageController::class, "index"]);
 
-Route::get("/shop", [ShopController::class, 'getAllProducts']);
+Route::get("/shop", [ShopController::class, "getAllProducts"]);
 
 Route::view("/about","about");
 
-Route::get("/contact", [ContactController::class, 'index']);
+Route::get("/contact", [ContactController::class, "index"]);
 
 
-Route::middleware(['auth', AdminCheckMidlleware::class])->prefix('admin')->group(function () {
+Route::middleware(["auth", AdminCheckMidlleware::class])->prefix("/admin")->group(function () {
 
     // ADMIN contact
 
-    Route::controller(AdminContactController::class)->group(function () {
-        Route::get("/contacts/all", "getAllContacts")->name("sviKontakti");
-        Route::post("/contacts/send", "sendContact")->name("posaljiKontakt");
-        Route::get("/contacts/delete/{contact}",  'deleteContact')->name("brisanjeKontakta");
+    Route::controller(AdminContactController::class)->name("contact.")->prefix("/contact")->group(function () {
+        Route::get("/all", "getAllContacts")->name("all");
+        Route::post("/send", "sendContact")->name("send");
+        Route::get("/delete/{contact}",  "deleteContact")->name("delete");
 
-        Route::get("/contacts/{contact}/edit", 'editContact')->name('editContact');
-        Route::put("/contacts/{contact}", 'updateContact')->name('updateContact');
+        Route::get("/{contact}/edit", "editContact")->name("edit");
+        Route::put("/{contact}", "updateContact")->name("update");
     });
 
 
     // ADMIN product
 
-    Route::controller(AdminProductsController::class)->group(function () {
+    Route::controller(AdminProductsController::class)->name("product.")->prefix("/product")->group(function () {
 
-        Route::get("/all-products", 'allProducts')->name("sviProizvodi");
-        Route::post("/create-new-product", 'createNewProduct')->name("snimanjeOglasa");
-        Route::get('/products/{product}/edit', 'editProduct')->name('editProduct');
-        Route::put('/products/{product}', 'updateProduct')->name('updateProduct');
-
-        Route::get("/delete-product/{product}", 'deleteProduct')->name("brisanjeProizvoda");
+        Route::get("/all", "allProducts")->name("all");
+        Route::post("/create-new", "createNewProduct")->name("create");
+        Route::get("/{product}/edit", "editProduct")->name("edit");
+        Route::put("/{product}", "updateProduct")->name("update");
+        Route::get("/delete/{product}", "deleteProduct")->name("delete");
 
     });
 
     Route::view("/add-product","admin/addProduct");
-
-
-
 
 
 });
@@ -63,20 +59,20 @@ Route::middleware(['auth', AdminCheckMidlleware::class])->prefix('admin')->group
 */
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get("/dashboard", function () {
+    return view("dashboard");
+})->middleware(["auth", "verified"])->name("dashboard");
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get("/dashboard", function () {
+    return view("dashboard");
+})->middleware(["auth", "verified"])->name("dashboard");
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::middleware("auth")->group(function () {
+    Route::get("/profile", [ProfileController::class, "edit"])->name("profile.edit");
+    Route::patch("/profile", [ProfileController::class, "update"])->name("profile.update");
+    Route::delete("/profile", [ProfileController::class, "destroy"])->name("profile.destroy");
 });
 
-require __DIR__.'/auth.php';
+require __DIR__."/auth.php";
 

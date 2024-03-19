@@ -25,8 +25,8 @@
                     Admin
                 </a>
                 <ul class="dropdown-menu p-2" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="{{route("sviKontakti")}}">All Contacts</a></li>
-                    <li><a class="dropdown-item" href="{{route("sviProizvodi")}}">All Products</a></li>
+                    <li><a class="dropdown-item" href="{{route("contact.all")}}">All Contacts</a></li>
+                    <li><a class="dropdown-item" href="{{route("product.all")}}">All Products</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>

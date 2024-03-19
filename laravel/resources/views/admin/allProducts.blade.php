@@ -1,10 +1,10 @@
 @extends('layout')
 
-@section('naslovStranice')
+@section('title')
     Admin-All products
 @endsection
 
-@section('sadrzajStranice')
+@section('content')
 
 <div class="container">
     <h4>All products (from newest to oldest)</h4>
@@ -31,9 +31,9 @@
             <td>{{ $product->description }}</td>
             <td>{{ $product->image }}</td>
             <td>
-                <a href="{{route("brisanjeProizvoda", ['product' => $product->id])}}" class="btn btn-danger centered" onclick="return confirm('Are you sure you want to delete this item?');">Obrisi</a>
+                <a href="{{route("product.delete", ['product' => $product->id])}}" class="btn btn-danger centered" onclick="return confirm('Are you sure you want to delete this item?');">Obrisi</a>
 
-                <a href="{{ route('editProduct', ['product' => $product->id]) }}" class="btn btn-primary centered">Edituj</a>
+                <a href="{{ route('product.edit', ['product' => $product->id]) }}" class="btn btn-primary centered">Edituj</a>
 
             </td>
         </tr>

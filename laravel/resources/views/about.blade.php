@@ -1,10 +1,10 @@
 @extends("layout")
 
-    @section("naslovStranice")
+    @section("title")
         About
     @endsection
 
-    @section("sadrzajStranice")
+    @section("content")
 
         <!-- About 1 - Bootstrap Brain Component -->
 <section class="py-3 py-md-5">

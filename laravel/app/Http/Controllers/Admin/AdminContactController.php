@@ -66,7 +66,7 @@ class AdminContactController extends Controller
 
         $this->contactRepo->update($contact, $request);
 
-        return redirect()->route("sviKontakti");
+        return redirect()->route("contact.all");
     }
 
 

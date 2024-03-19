@@ -1,10 +1,10 @@
 @extends('layout')
 
-@section('naslovStranice')
+@section('title')
     Contact
 @endsection
 
-@section('sadrzajStranice')
+@section('content')
     @if(session('success'))
     <div class="row justify-content-center">
         <div class="alert alert-success col-md-5 col-12 p-4">
@@ -17,7 +17,7 @@
             <h3>Contact</h3>
             <hr>
             <h4>Write us</h4>
-            <form class="row" method="POST" action="{{ route("posaljiKontakt")}}">
+            <form class="row" method="POST" action="{{ route("contact.send")}}">
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         @foreach ($errors->all() as $error)

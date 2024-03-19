@@ -24,9 +24,9 @@ class AdminProductsController extends Controller
     public function allProducts()
     {
 
-        $allProducts = ProductModel::orderBy('id', 'desc')->get();
+        $allProducts = ProductModel::orderBy("id", "desc")->get();
 
-        return view("admin/allProducts", compact('allProducts'));
+        return view("admin/allProducts", compact("allProducts"));
     }
 
 
@@ -36,7 +36,7 @@ class AdminProductsController extends Controller
 
         $this->productRepo->createNew($request);
 
-        return redirect()->route("sviProizvodi");
+        return redirect()->route("product.all");
 
     }
 
@@ -54,7 +54,7 @@ class AdminProductsController extends Controller
 
     public function editProduct(ProductModel $product)
     {
-        return view('admin.editProduct', compact('product'));
+        return view("admin.editProduct", compact("product"));
     }
 
 
@@ -65,7 +65,7 @@ class AdminProductsController extends Controller
 
         $this->productRepo->update($product, $request);
 
-        return redirect()->route("sviProizvodi");
+        return redirect()->route("product.all");
     }
 
 

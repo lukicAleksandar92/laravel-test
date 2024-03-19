@@ -1,10 +1,10 @@
 @extends('layout')
 
-@section('naslovStranice')
-    Dashboard
+@section('title')
+    Home
 @endsection
 
-@section('sadrzajStranice')
+@section('content')
 <div class="container">
     <h4>HOME</h4>
     @if ($sat >= 12)

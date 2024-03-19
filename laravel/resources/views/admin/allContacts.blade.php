@@ -1,11 +1,11 @@
 @extends('layout')
 
-@section('naslovStranice')
+@section('title')
     Admin-All contacts
 @endsection
 
 
-@section('sadrzajStranice')
+@section('content')
 
 <div class="container">
     <h4>All contacts (from newest to oldest)</h4>
@@ -29,9 +29,9 @@
                 <td>{{ $contact->subject }}</td>
                 <td>{{ $contact->message }}</td>
                 <td>
-                    <a href="{{route("brisanjeKontakta", ["contact"=>$contact->id])}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Obrisi</a>
+                    <a href="{{route("contact.delete", ["contact"=>$contact->id])}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Obrisi</a>
 
-                    <a href="{{ route('editContact', ['contact' => $contact->id]) }}" class="btn btn-primary centered">Edituj</a>
+                    <a href="{{ route('contact.edit', ['contact' => $contact->id]) }}" class="btn btn-primary centered">Edituj</a>
                 </td>
             </tr>
             @endforeach

@@ -1,16 +1,16 @@
 @extends('layout')
 
-@section('naslovStranice')
+@section('title')
     Add Product
 @endsection
 
 
-@section('sadrzajStranice')
+@section('content')
     <div class="row justify-content-center">
         <div class="col-md-5 col-12 p-4">
             <h4>Add product</h4>
 
-            <form class="row" method="POST" action="{{route("snimanjeOglasa")}}">
+            <form class="row" method="POST" action="{{route("product.create")}}">
                 @if ($errors->any())
                     @foreach ($errors->all() as $error)
                     <p class="text-danger">{{ $error }}</p>

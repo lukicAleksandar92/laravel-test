@@ -1,16 +1,16 @@
 @extends('layout')
 
-@section('naslovStranice')
+@section('title')
     Edit contact
 @endsection
 
 
-@section('sadrzajStranice')
+@section('content')
     <div class="row justify-content-center">
         <div class="col-md-5 col-12 p-4">
             <h4>Edit contact</h4>
 
-            <form class="row" method="POST" action="{{ route('updateContact', $contact->id) }}">
+            <form class="row" method="POST" action="{{ route('contact.update', $contact->id) }}">
 
                 @if ($errors->any())
                     @foreach ($errors->all() as $error)

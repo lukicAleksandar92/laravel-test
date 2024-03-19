@@ -1,10 +1,10 @@
 @extends("layout")
 
-    @section("naslovStranice")
+    @section("title")
         Shop
     @endsection
 
-    @section("sadrzajStranice")
+    @section("content")
     <div class="container">
     <h3>Shop</h3>
     <hr>
