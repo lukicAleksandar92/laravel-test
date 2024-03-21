@@ -10,21 +10,13 @@
     <hr>
 
         <p>
-            @foreach ($allProducts as $singleProduct)
-                {{-- @if ($singleProduct == 'BMW G20' || $singleProduct == 'BMW F30')
-                    <p>{{ $singleProduct }} -AKCIJA</p>
-                @else
-                    <p>{{ $singleProduct }} </p>
-                @endif --}}
-
-
+            @foreach ($allProducts as $singleProduct)d
                 Naziv: {{ $singleProduct->name}}<br>
                 Kolicina: {{ $singleProduct->amount}}<br>
                 Cena: {{ $singleProduct->price}}<br>
+                <a class="btn btn-primary" href="{{ route("shop.permalink", ['product' => $singleProduct->id]) }}">Show product</a>
                 <br>
-
-
-
+                <br>
             @endforeach
         </p>
     </div>

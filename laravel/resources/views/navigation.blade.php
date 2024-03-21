@@ -20,6 +20,9 @@
         </div>
 
         <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route("cart.index") }}">Cart</a>
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="/admin" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Admin

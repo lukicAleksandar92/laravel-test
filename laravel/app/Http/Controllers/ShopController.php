@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductModel;
+use Illuminate\Support\Facades\Session;
 
 class ShopController extends Controller
 {
@@ -13,6 +14,18 @@ class ShopController extends Controller
 
         return view("shop", compact('allProducts'));
     }
+
+
+
+
+    public function showSingleProduct(ProductModel $product)  {
+
+        return view("permalink", compact('product'));
+    }
+
+
+
+
 
 
 }

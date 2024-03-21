@@ -7,6 +7,7 @@ use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShoppingCartController;
 use App\Http\Middleware\AdminCheckMidlleware;
 
 
@@ -18,6 +19,12 @@ Route::view("/about","about");
 
 Route::get("/contact", [ContactController::class, "index"]);
 
+Route::get("shop/{product}", [ShopController::class,"showSingleProduct"])->name("shop.permalink");
+
+Route::post("/cart/add", [ShoppingCartController::class, "addToCart"])->name("cart.add");
+
+Route::get("/cart", [ShoppingCartController::class, "index"])->name("cart.index");
+
 
 Route::middleware(["auth", AdminCheckMidlleware::class])->prefix("/admin")->group(function () {
 
@@ -27,7 +34,6 @@ Route::middleware(["auth", AdminCheckMidlleware::class])->prefix("/admin")->grou
         Route::get("/all", "getAllContacts")->name("all");
         Route::post("/send", "sendContact")->name("send");
         Route::get("/delete/{contact}",  "deleteContact")->name("delete");
-
         Route::get("/{contact}/edit", "editContact")->name("edit");
         Route::put("/{contact}", "updateContact")->name("update");
     });

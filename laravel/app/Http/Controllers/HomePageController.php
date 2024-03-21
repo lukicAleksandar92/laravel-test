@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductModel;
-use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Session;
 
 class HomePageController extends Controller
 {
@@ -17,7 +16,11 @@ class HomePageController extends Controller
 
         $newestSixProducts = ProductModel::orderBy('id', 'desc')->take(6)->get();
 
+
+
         return view("welcome", compact('trenutnoVreme', 'sat', 'newestSixProducts'));
+
+
 
     }
 
