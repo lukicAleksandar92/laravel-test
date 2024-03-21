@@ -9,11 +9,18 @@
 <div class="container">
 
 
+
     <h5>name: {{ $product->name }}</h5>
     <p>price: {{ $product->price }}</p>
     <p>amount: {{ $product->amount }}</p>
     <p>description: {{ $product->description }}</p>
     <p>image: {{ $product->image }}</p>
+
+    @if (session('error'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('error') }}
+        </div>
+    @endif
 
     <form action="{{ route("cart.add") }}" method="POST">
         {{ csrf_field() }}

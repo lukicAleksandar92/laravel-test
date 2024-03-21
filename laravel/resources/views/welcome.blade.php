@@ -8,12 +8,12 @@
 <div class="container">
     <h4>HOME</h4>
     @if ($sat >= 12)
-        "dobar dan"
+        "Good day"
     @else
-        "dobro jutro"
+        "Good morning"
     @endif
 
-    <p>Trenutno vreme je: {{ $trenutnoVreme }} i cas je {{ $sat }}</p>
+    <p>Current time: {{ $trenutnoVreme }} & hour {{ $sat }}</p>
 
     <hr>
 
@@ -21,9 +21,9 @@
     <p>
         @foreach ($newestSixProducts as $singleProduct)
             {{ $singleProduct->id }}<br>
-            Naziv: {{ $singleProduct->name }}<br>
-            Kolicina: {{ $singleProduct->amount }}<br>
-            Cena: {{ $singleProduct->price }}<br>
+            Name: {{ $singleProduct->name }}<br>
+            Amount: {{ $singleProduct->amount }}<br>
+            Price: {{ $singleProduct->price }}<br>
             <br>
         @endforeach
     </p>

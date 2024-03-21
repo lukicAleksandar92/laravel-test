@@ -10,10 +10,10 @@
     <hr>
 
         <p>
-            @foreach ($allProducts as $singleProduct)d
-                Naziv: {{ $singleProduct->name}}<br>
-                Kolicina: {{ $singleProduct->amount}}<br>
-                Cena: {{ $singleProduct->price}}<br>
+            @foreach ($allProducts as $singleProduct)
+                Name: {{ $singleProduct->name}}<br>
+                Amount: {{ $singleProduct->amount}}<br>
+                Price: {{ $singleProduct->price}}<br>
                 <a class="btn btn-primary" href="{{ route("shop.permalink", ['product' => $singleProduct->id]) }}">Show product</a>
                 <br>
                 <br>

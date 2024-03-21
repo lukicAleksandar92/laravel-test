@@ -20,12 +20,9 @@
         </div>
 
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route("cart.index") }}">Cart</a>
-            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="/admin" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Admin
+                    <i class="fa-regular fa-user"></i> Admin
                 </a>
                 <ul class="dropdown-menu p-2" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="{{route("contact.all")}}">All Contacts</a></li>
@@ -37,6 +34,11 @@
                         <a class="dropdown-item" href="/admin/add-product">Add Product</a>
                     </li>
                 </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route("cart.index") }}">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
             </li>
         </ul>
     </div>
