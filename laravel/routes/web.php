@@ -21,9 +21,22 @@ Route::get("/contact", [ContactController::class, "index"]);
 
 Route::get("shop/{product}", [ShopController::class,"showSingleProduct"])->name("shop.permalink");
 
+
+
+// CART
+Route::middleware(["auth", AdminCheckMidlleware::class])->group(function () {
+
 Route::post("/cart/add", [ShoppingCartController::class, "addToCart"])->name("cart.add");
 
 Route::get("/cart", [ShoppingCartController::class, "index"])->name("cart.index");
+
+
+Route::get("/cart/finish", [ShoppingCartController::class, "finishOrder"])->name("cart.finish");
+
+Route::view("/cart/thankyou", "cartThankYou")->name("cart.thankyou");
+
+});
+
 
 
 Route::middleware(["auth", AdminCheckMidlleware::class])->prefix("/admin")->group(function () {

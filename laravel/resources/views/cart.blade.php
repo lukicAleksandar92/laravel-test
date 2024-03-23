@@ -10,11 +10,11 @@
         <div class="container h-100 py-5">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-10">
-
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
                     </div>
 
+                    <form action="{{ route('cart.finish') }}" method="GET">
                     @foreach ($cart as $cartItem)
                     @php
                     $product = $products->where('id', $cartItem['id'] )->first();
@@ -64,7 +64,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     @endforeach
 
@@ -77,18 +76,14 @@
                                         class="lead fw-normal">{{ $totalPrice }}</span>
                                 </p>
                             </div>
-
                         </div>
                     </div>
-
-
-
                     <div class="card">
                         <div class="card-body text-end">
-                            <button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+                            <button type="submit" class="btn btn-warning btn-block btn-lg">Finish Order</button>
                         </div>
                     </div>
-
+                </form>
                 </div>
             </div>
         </div>
